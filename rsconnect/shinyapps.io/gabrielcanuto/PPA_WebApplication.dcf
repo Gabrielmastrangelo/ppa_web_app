@@ -1,0 +1,14 @@
+name: PPA_WebApplication
+title: PPA_WebApplication
+username:
+account: gabrielcanuto
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6454457
+bundleId: 5989929
+url: https://gabrielcanuto.shinyapps.io/PPA_WebApplication/
+when: 1654708385.9928
+lastSyncTime: 1654708385.9928
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: venv
