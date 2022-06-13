@@ -21,9 +21,12 @@ ui <- fluidPage(
     sidebarPanel(
       selectInput("category", "Choose a category", 
                   c('Saam Towage', 'Seaspan', 'Group Ocean', 'Monitored Vessels')),
-      checkboxGroupInput("variables", "Choose the columns", names(data), 
-                         selected = c('Vessel Name', 'Order Time', 'From', 'To', 'Agency', 'Tug From', 'Tug To', 'Job On Time')),
-      width = 2
+      selectInput(
+        "variables", "Choose the columns?", names(data),
+        multiple = TRUE,
+        selected = c('Vessel Name', 'Order Time', 'From', 'To', 'Agency', 'Tug From', 'Tug To', 'Job On Time')
+        #width = 4
+        )
       
     ),
     
