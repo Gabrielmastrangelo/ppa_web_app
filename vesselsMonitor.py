@@ -101,4 +101,4 @@ data.columns = cols
 data = data.sort_values(by='Order Time')
 
 #Saving it into the file that R will read
-data.to_csv("data.csv")
+data.to_excel("data.xlsx")
