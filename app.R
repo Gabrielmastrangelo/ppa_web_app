@@ -3,7 +3,7 @@ library("readxl")
 library(lubridate)
 
 #Ignore the index column
-raw_data <- read_excel("data.xlsx", range = cell_cols(c("B","AE")))
+raw_data <- read.csv("data.csv")
 
 #This gets the datetime from Vancouver
 datetime_now <- with_tz(Sys.time(), tzone = "America/Vancouver")
