@@ -5,12 +5,21 @@ library(lubridate)
 #Ignore the index column
 raw_data <- read.csv("data.csv")
 
+#Printing in the log
+cat(file=stderr(), paste0("Raw Data:", "\n", head(raw_data), "\n"))
+
 #This gets the datetime from Vancouver
 datetime_now <- with_tz(Sys.time(), tzone = "America/Vancouver")
 #I was told that all data they need is between 48 hours
 datetime_threshold <- datetime_now + hours(48)
 
+#Printing in the log
+cat(file=stderr(), paste0("Datetime Threshold", datetime_threshold, "\n"))
+
 data<- raw_data[raw_data[['Order Time']] <= datetime_threshold, ]
+
+#Printing in the log
+cat(file=stderr(), paste0("Data:", "\n", head(data), "\n"))
 
 ui <- fluidPage(
   
