@@ -2,18 +2,19 @@ library(shiny)
 library("readxl")
 library(lubridate)
 
-#Ignore the index column
-raw_data <- read_excel("data.xlsx", range = cell_cols(c("B","AE")))
+# Function that gets the table that is updated by the python file.
+get_table <- function() {
+  #Ignore the index column
+  raw_data <- read_excel("data.xlsx", range = cell_cols(c("B","AE")))
+  
+  #This gets the datetime from Vancouver
+  datetime_now <- with_tz(Sys.time(), tzone = "America/Vancouver")
+  #I was told that all data they need is between 48 hours
+  datetime_threshold <- datetime_now + hours(48)
+  
+  raw_data[raw_data[['Order Time']] <= datetime_threshold, ]
+}
 
-#This gets the datetime from Vancouver
-datetime_now <- with_tz(Sys.time(), tzone = "America/Vancouver")
-#I was told that all data they need is between 48 hours
-datetime_threshold <- datetime_now + hours(48)
-
-data<- raw_data[raw_data[['Order Time']] <= datetime_threshold, ]
-
-#Printing in the log
-cat(file=stderr(), paste0("Data:", "\n", head(data), "\n"))
 
 ui <- fluidPage(
   
@@ -44,11 +45,11 @@ ui <- fluidPage(
 
 
 server <- function(input, output) {
-  output$dynamic <- renderDataTable(data[input$variables], options = list(pageLength = 20))
+  
+  data <- reactive(get_table())
+  
+  output$dynamic <- renderDataTable(data()[input$variables], options = list(pageLength = 20))
   
 }
 
 shinyApp(ui = ui, server = server)
-
-
-
