@@ -102,4 +102,4 @@ def get_data():
     data = data.sort_values(by='Order Time')
 
     #Saving it into the file that R will read
-    data.to_excel("data.xlsx")
+    return data.to_json()
