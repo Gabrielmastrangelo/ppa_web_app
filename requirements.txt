@@ -1,1 +1,4 @@
 django
+selenium
+chromedriver_autoinstaller
+pandas

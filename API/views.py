@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 
-import vesselsMonitor
+from . import vesselsMonitor
 # Create your views here.
 
 def get_data(request):
